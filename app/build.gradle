@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.example.dayfour"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    greendao{
+        schemaVersion 1 //数据库版本号
+        daoPackage 'com.example.dayfour.dao'  //数据库全路径
+        targetGenDir 'src/main/java'  //存放位置
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //侧滑栏
+    compile 'com.android.support:design:29.0.0'
+    //RecyclerView
+    implementation 'com.android.support:design:29.0.0'
+
+    //图片
+    implementation('com.github.bumptech.glide:glide:4.8.0') {
+        exclude group: "com.android.support"
+    }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    //轮播图
+    implementation 'com.youth.banner:banner:1.4.10'
+
+    //Okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'//转换器，请求结果转换Model
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'//配合Rxjava 使用
+
+    //ButterKnife依赖(添加Android ButterKnife Zelezny插件)
+    //implementation 'com.jakewharton:butterknife:9.0.0'
+    //annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
+
+
+    //Rxjava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.4'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+    //上拉加载下拉刷新
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
+    implementation 'com.android.support:appcompat-v7:29.0.0'//版本 23以上（必须）
+
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+}
